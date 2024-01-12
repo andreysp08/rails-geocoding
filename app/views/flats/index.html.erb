@@ -1,0 +1,27 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Flats</h1>
+
+<div id="flats">
+  <% @flats.each do |flat| %>
+    <%= render flat %>
+    <p>
+      <%= link_to "Show this flat", flat %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New flat", new_flat_path %>
+
+<p>
+  <% @markers.each do |marker| %>
+    <div class="card m-2"><%= marker.to_json %></div>
+  <% end %>
+</p>
+
+<div class="container">
+  <div style="height: 600px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" class="card border shadow"></div>
+</div>
