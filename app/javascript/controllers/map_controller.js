@@ -1,5 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 import mapboxgl from 'mapbox-gl'
+// import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder" # => this import stop the map.
+// alternative to run the map with search: input link and script tag in application.html.erb like doc below explain;
+// https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder/
 
 // Connects to data-controller="map"
 export default class extends Controller {
@@ -14,11 +17,19 @@ export default class extends Controller {
 
     this.map = new mapboxgl.Map({
       container: this.element,
-      style: "mapbox://styles/mapbox/streets-v10"
+      style: "mapbox://styles/pdunleav/cjofefl7u3j3e2sp0ylex3cyb" // lewagon style of the class
+      // style: "mapbox://styles/mapbox/streets-v10"
     })
 
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
+
+    this.map.addControl(
+      new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl
+        })
+      );
   }
 
   #addMarkersToMap() {

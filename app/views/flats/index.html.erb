@@ -13,15 +13,15 @@
 
 <%= link_to "New flat", new_flat_path %>
 
-<p>
-  <% @markers.each do |marker| %>
-    <div class="card m-2"><%= marker.to_json %></div>
-  <% end %>
-</p>
+ <hr>
 
 <div class="container">
   <div style="height: 600px;"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" class="card border shadow"></div>
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>" class="card border shadow">
+    <div>
+        <a class="m-2 sticky-top btn btn-outline-danger bg-opacity-50" style="float: left;" href="https://github.com/andreysp08" target="_blank">Andrey Pereira</a>
+      </div>
+    </div>
 </div>
